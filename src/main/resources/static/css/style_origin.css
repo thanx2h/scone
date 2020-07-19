@@ -1,0 +1,64 @@
+*{
+    padding: 0;
+    margin:0;
+    list-style:none; 
+    text-decoration:none; 
+    font-family:"맑은 고딕";
+
+
+}
+
+body{
+    width:100%;
+    background-size:inherit;
+    margin:0 auto;
+}
+
+.wrap {
+}
+
+a{ 
+    text-decoration: none;
+    color: inherit;
+    
+}
+/*scone*/
+h1{text-align: center; color: red;}
+
+
+.txt{ padding: 0; font-weight: 600; margin-bottom:10px; }
+.today{ font-size: 15px;   }
+#date{ color:deepskyblue;}
+.today2{ font-size: 13.5px; }
+
+/*list head*/
+.list_head, .list_body .list{font-size:0; padding:10px 0;}
+.list_head > div, .list_body .list > div{ display: inline-block; font-size:12px; text-align: center;}
+
+.list_head{ border-top: 2px solid #000; border-bottom: 2px solid #000; font-weight: 600; }
+
+/*list*/
+.list_wrap{ padding:0;}
+/*.list_wrap .rank{ width:5%; }
+.list_wrap .company{ width:30%;}
+.list_wrap .company >img{ width:30%;}
+.list_wrap .value{ width:15%; }
+.list_wrap .keyword{ width:45%; }*/
+
+.rank{ width:5%; }
+.company{ width:30%;}
+.company_contents{ width:30%;}
+.ci{
+    width:50%;
+    float:left;
+}
+.name{ width:50%; float:right;}
+.value{ width:20%; }
+.keyword{ width:40%; }
+
+
+.list{border-bottom: 1px solid #ccc; font-weight:600;}
+
+/*footer*/
+footer .copy{ font-size: 11px; text-align: center; font-weight: 600; padding:20px 0 10px 0;}
+.copy .cr_red{ color:red;}
