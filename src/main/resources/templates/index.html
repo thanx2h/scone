@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,-->
+<!--  maximum-scale=1.0, minimum-scale=1.0">-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <title>Scone</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- 이미지 저장 -->
+    <!--    <script src="js/FileSaver.js"></script>-->
+    <!--    <script src="js/html2canvas.js"></script>-->
+    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js "></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+<button id="save">저장하기</button>
+<script type="text/javascript">
+     $(function(){
+        $("#save").click(function() {
+        html2canvas($("#wrap"), {
+            onrendered: function(canvas) {
+                canvas.toBlob(function(blob) {
+                    saveAs(blob, 'image.png');
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+<div class="wrap" id="wrap" style="background-color:white">
+    <div id="title">
+        <header>
+            <h1>Scone</h1>
+        </header>
+    </div>
+
+    <div class="txt">
+        <p class="today">
+            <span>Today's Trending Stock</span>
+            <!--            <span id="date"> 2020/06/01(Mon)</span>-->
+            <span id="date">
+                <script type="text/javascript">
+                    var today = new Date();
+                    var year = today.getFullYear(); // 년도
+                    var month = today.getMonth() + 1;  // 월
+                    var date = today.getDate();  // 날짜
+                    document.getElementById('date').innerHTML = year + '/' + month + '/' + date;
+
+                    function img_resize(img){
+                        var myWidth = document.getElementById('company').offsetWidth/2;
+                        var myHeight = document.getElementById('company').offsetHeight;
+
+                        if( img.height > myHeight ){
+                            r = myHeight / img.height;
+                            h = img.height * r;
+                            img.height = h;
+                        }
+
+                        if(img.width > myWidth){
+                            r = myHeight / img.height;
+                            w = img.width * r;
+                            img.width = w;
+                        }
+                    }
+
+                    function fitImageSize(obj, href, maxWidth, maxHeight) {
+ 	                var image = new Image();
+
+ 	                var maxWidth = document.getElementById('company').offsetWidth/2;
+ 	                var maxHeight = document.getElementById('company').offsetHeight;
+
+	                image.onload = function(){
+
+		                var width = image.width;
+		                var height = image.height;
+
+		                var scalex = maxWidth / width;
+		                var scaley = maxHeight / height;
+
+		                var scale = (scalex < scaley) ? scalex : scaley;
+                		if (scale > 1)
+			                scale = 1;
+
+		                obj.width = scale * width;
+		                obj.height = scale * height;
+		                obj.style.display = "";
+	                }
+	                image.src = href;
+                }
+                </script>
+        </span>
+        </p>
+        <p class="today2">#순위는 당일 투자자들의 관심도 순입니다</p>
+    </div>
+
+    <div class="list_wrap">
+        <div class="list_head">
+            <div class="rank">Rank</div>
+            <div class="company">Company</div>
+            <div class="value">Change in Value</div>
+            <div class="keyword">Market Keyword</div>
+        </div>
+
+        <div class="list_body">
+            <div class="list" th:id="'list'+${itemList.rank}" th:each="itemList : ${ingiItemList}">
+                <div class="rank" th:attr="data-rank=${itemList.rank}" th:text="${itemList.rank}">rank</div>
+                <div class="company_contents" id="company">
+                    <div class="ci" th:id="'ci'+${itemList.rank}">
+                        <img th:src="@{${'/images/ci/' + itemList.company + '.png'}}"
+                             th:attr="onLoad=|fitImageSize(this, '@{${'/images/ci/' + itemList.company + '.png'}}', 70, 70)|"/>
+                    </div>
+                    <div class="name" th:text="${itemList.company}">company</div>
+                </div>
+                <div class="value"
+                     th:styleappend="${#strings.contains(itemList.upDownRate, '-') ? 'color: blue;' : 'color: red;'} "
+                     th:text="${itemList.upDownRate}">upDownRate
+                </div>
+                <div class="keyword" th:id="'printKeyword'+${itemList.rank}"
+                     th:attr="ondblclick=|input('${itemList.rank}')|">Enter the Keywords<br>(double click)
+                    <script type="text/javascript" th:inline="javascript">
+                        function input(idx){
+                            document.getElementById('list'+idx).removeChild(document.getElementById('printKeyword'+idx));
+
+                            var textareaKeyword = document.createElement('div');
+                            textareaKeyword.setAttribute('id', 'textareaKeyword'+idx);
+                            textareaKeyword.setAttribute('class', 'keyword');
+                            document.getElementById('list'+idx).appendChild(textareaKeyword);
+                            document.getElementById('textareaKeyword'+idx).innerHTML += createInput(idx);
+                        }
+
+                        function createInput(idx){
+                            return "<center><textarea id='inputTextarea"+idx+"'></textarea><br><button type='button' id='bttClick"+idx+"' onClick='output("+idx+")'>COMPLETE</button></center>"
+                        }
+
+                        function output(idx){
+                            document.getElementById('list'+idx).innerHTML += createOutput(idx);
+                            document.getElementById('list'+idx).removeChild(document.getElementById('textareaKeyword'+idx));
+                        }
+
+                        function createOutput(idx){
+                            var inputText = document.getElementById('inputTextarea'+idx).value;
+                            if(!inputText)
+                                inputText = "Enter the Keywords<br>(double click)";
+                            return "<div class='keyword' id='printKeyword"+idx+"' ondblclick='input("+idx+")'>"+inputText+"</div>";
+                        }
+
+
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p class="copy">
+                <span class="cr">copyright 2020</span>
+                <span class="cr_red">오픈카카오 Scone(Password:scone20)</span>
+                <sapn class="cr">all rights reserved</sapn>
+            </p>
+        </footer>
+    </div>
+</div>
+</body>
+</html>

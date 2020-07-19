@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          charset="UTF-8">
+    <title>Scone</title>
+<!--    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">-->
+<!--    <script src="./js/FileSaver.js"></script>-->
+<!--    <script src="./js/html2canvas.js"></script>-->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <!-- 이미지 저장 -->
+    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js "></script>
+</head>
+<style>
+</style>
+
+<body>
+
+<div>
+    <div>
+        <button class="btn btn-default" id="save">저장하기</button>
+    </div>
+    <div id="downloadImage" style="background-image: URL(/images/scone.jpg);">
+        <script type="text/javascript">
+     $(function(){
+        $("#save").click(function() {
+        html2canvas($("#downloadImage"), {
+            onrendered: function(canvas) {
+                canvas.toBlob(function(blob) {
+                    saveAs(blob, 'image.png');
+                    });
+                }
+            });
+        });
+    });
+    </script>
+        <div>
+            <h2 style="color: rgb(255,0,0)" class="font-weight-bold text-center">Scone</h2>
+
+            <script type="text/javascript">
+        var today = new Date();
+        var year = today.getFullYear(); // 년도
+        var month = today.getMonth() + 1;  // 월
+        var date = today.getDate();  // 날짜
+
+        var title = "Today's Tranding Stock ";
+        var date = year + '/' + month + '/' + date;
+        document.write(title.bold());
+        document.write(date.fontcolor("DarkGreen"));
+
+        </script>
+            <h6 class="font-weight-bold"># 순위는 당일 투자자들의 관심도 순입니다.</h6>
+        </div>
+
+        <div class="row text-center">
+            <table class="table" id="newsTable">
+                <colgroup>
+                    <col width="10%"/>
+                    <col width="10%"/>
+                    <col width="15%"/>
+                    <col width="20%"/>
+                    <col width="*"/>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th scope="col">Rank</th>
+                    <th scope="col" colspan="2">Company</th>
+                    <th scope="col">Change in Value</th>
+                    <th scope="col">Market Keyword</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr style="text-align:center;vertical-align:middle;" th:each="itemList : ${ingiItemList}">
+                    <td id="rank" th:attr="data-rank=${itemList.rank}" th:text="${itemList.rank}" style="text-align:center;vertical-align:middle;">rank</td>
+                    <td id="ciTd" style="text-align:center;vertical-align:middle;">
+                        <img id="ciImg" th:src="@{${'/images/ci/' + itemList.company + '.jpg'}}" style="width:100%; height:100%">
+                    </td>
+                    <td th:text="${itemList.company}" style="text-align:center;vertical-align:middle;">company</td>
+                    <td style="text-align:center;vertical-align:middle;" th:styleappend ="${#strings.contains(itemList.upDownRate, '-') ? 'color: blue;' : 'color: red;'} " th:text="${itemList.upDownRate}">upDownRate</td>
+                    <td id="keyword" style="text-align:center;vertical-align:middle;">
+                        <form  th:id="'formKeyword'+${itemList.rank}">
+                            <div th:id="'printKeyword'+${itemList.rank}" th:attr="ondblclick=|input('${itemList.rank}')|" >Enter the Keywords(double click)</div>
+                        </form>
+                        <script type="text/javascript" th:inline="javascript">
+                        function input(idx){
+                            var textareaKeyword = document.createElement('div');
+                            textareaKeyword.setAttribute('id', 'textareaKeyword'+idx);
+                            document.getElementById('formKeyword'+idx).appendChild(textareaKeyword);
+                            document.getElementById('textareaKeyword'+idx).innerHTML += createInput(idx);
+                            document.getElementById('formKeyword'+idx).removeChild(document.getElementById('printKeyword'+idx));
+                        }
+
+                        function createInput(idx){
+                            return "<center><textarea id='inputTextarea"+idx+"'></textarea><br><button type='button' id='bttClick"+idx+"' onClick='output("+idx+")'>COMPLETE</button></center>"
+                        }
+
+                        function output(idx){
+                            document.getElementById('formKeyword'+idx).innerHTML += createOutput(idx);
+                            document.getElementById('formKeyword'+idx).removeChild(document.getElementById('textareaKeyword'+idx));
+                        }
+
+                        function createOutput(idx){
+                            var inputText = document.getElementById('inputTextarea'+idx).value;
+                            if(!inputText)
+                                inputText = "Enter the Keywords(double click)";
+                            return "<div id='printKeyword"+idx+"' ondblclick='input("+idx+")'>"+inputText+"</div>";
+                        }
+                        </script>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center"  style="font-size:11px;font-weight:bold;">
+            Copyright 2020
+            <span style="color:red">Open Kakao Scone (Password: scone20)</span>
+            all rights reserved
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"-->
+<!--        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"-->
+<!--        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"-->
+<!--        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"-->
+<!--        crossorigin="anonymous"></script>-->
+</body>
+</html>
