@@ -7,12 +7,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Scone</title>
-    <link rel="stylesheet" type="text/css" href="css/style_origin.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <!-- 이미지 저장 -->
-        <script src="js/FileSaver.js"></script>
-        <script src="js/html2canvas.js"></script>
-<!--    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>-->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js "></script>-->
+    <script src="js/FileSaver.js"></script>
+    <script src="js/html2canvas.js"></script>
+    <!--    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>-->
+    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js "></script>-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
@@ -43,36 +43,69 @@
         <p class="today">
             <span>Today's Trending Stock</span>
             <span id="date"></span>
-        </span>
+            </span>
         </p>
         <p class="today2">#순위는 당일 투자자들의 관심도 순입니다</p>
     </div>
 
     <div class="list_wrap">
         <div class="list_head">
-            <div class="rank">Rank</div>
-            <div class="company">Company</div>
-            <div class="value">Change in Value</div>
-            <div class="keyword">Market Keyword</div>
+            <ul>
+                <li class="rank">Rank</li>
+                <li class="company">Company</li>
+                <li class="value">Change in Value</li>
+                <li class="keyword">Market Keyword</li>
+            </ul>
         </div>
 
+<!--        <div class="list_body">-->
+<!--            <div class="list" th:id="'list'+${itemList.rank}" th:each="itemList : ${ingiItemList}">-->
+<!--                <div class="rank" th:attr="data-rank=${itemList.rank}" th:text="${itemList.rank}">rank</div>-->
+<!--                <div class="company_contents" id="company">-->
+<!--                    <div class="ci" th:id="'ci'+${itemList.rank}">-->
+<!--                        <input type=file id="upload" style="display:none;">-->
+<!--                        <img th:id="'ciImg'+${itemList.rank}" th:src="@{${'/images/ci/' + itemList.company + '.png'}}"-->
+<!--                             th:attr="onLoad=|fitImageSize(this, '@{${'/images/ci/' + itemList.company + '.png'}}', 70, 70)|,-->
+<!--                                      onclick=|changeImage('@{${itemList.rank}}')|"/>-->
+<!--                    </div>-->
+<!--                    <div class="name" th:text="${itemList.company}">company</div>-->
+<!--                </div>-->
+<!--                <div class="value"-->
+<!--                     th:styleappend="${#strings.contains(itemList.upDownRate, '-') ? 'color: blue;' : 'color: red;'} "-->
+<!--                     th:text="${itemList.upDownRate}">upDownRate-->
+<!--                </div>-->
+<!--                <div class="keyword" th:id="'printKeyword'+${itemList.rank}"-->
+<!--                     th:attr="ondblclick=|input('${itemList.rank}')|">Enter the Keywords<br>(double click)-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="list_body">-->
+<!--            <div class="list_row">-->
+<!--                <div class="list_rank">rank</div>-->
+<!--                <div class="list_ci">-->
+<!--                    <img src="img/samsung.png" alt="samsung" >-->
+<!--                </div>-->
+<!--                <div class="list_company">brand name</div>-->
+<!--                <div class="list_value">upDownRate</div>-->
+<!--                <div class="list_keyword">Enter the Keywords(double click)</div>-->
+<!--            </div>-->
+<!--        </div>-->
+
         <div class="list_body">
-            <div class="list" th:id="'list'+${itemList.rank}" th:each="itemList : ${ingiItemList}">
-                <div class="rank" th:attr="data-rank=${itemList.rank}" th:text="${itemList.rank}">rank</div>
-                <div class="company_contents" id="company">
-                    <div class="ci" th:id="'ci'+${itemList.rank}">
-                        <img th:src="@{${'/images/ci/' + itemList.company + '.png'}}"
-                             th:attr="onLoad=|fitImageSize(this, '@{${'/images/ci/' + itemList.company + '.png'}}', 70, 70)|"/>
-                    </div>
-                    <div class="name" th:text="${itemList.company}">company</div>
+            <div class="list_row" th:id="'list'+${itemList.rank}" th:each="itemList : ${ingiItemList}">
+                <div class="list_rank" th:attr="data-rank=${itemList.rank}" th:text="${itemList.rank}">rank</div>
+                <div class="list_ci" th:id="'ci'+${itemList.rank}">
+                    <input type=file id="upload" style="display:none;">
+                    <img th:id="'ciImg'+${itemList.rank}" th:src="@{${'/images/ci/' + itemList.company + '.png'}}"
+                         th:attr="onLoad=|fitImageSize(this, '@{${'/images/ci/' + itemList.company + '.png'}}', 70, 70)|,
+                                      onclick=|changeImage('@{${itemList.rank}}')|"/>
                 </div>
-                <div class="value"
-                     th:styleappend="${#strings.contains(itemList.upDownRate, '-') ? 'color: blue;' : 'color: red;'} "
-                     th:text="${itemList.upDownRate}">upDownRate
-                </div>
-                <div class="keyword" th:id="'printKeyword'+${itemList.rank}"
-                     th:attr="ondblclick=|input('${itemList.rank}')|">Enter the Keywords<br>(double click)
-                </div>
+                <div class="list_company" th:text="${itemList.company}">brand name</div>
+                <div class="list_value" th:styleappend="${#strings.contains(itemList.upDownRate, '-') ? 'color: blue;' : 'color: red;'} "
+                     th:text="${itemList.upDownRate}">upDownRate</div>
+                <div class="list_keyword" th:id="'printKeyword'+${itemList.rank}"
+                     th:attr="ondblclick=|input('${itemList.rank}')|">Enter the Keywords(double click)</div>
             </div>
         </div>
 
