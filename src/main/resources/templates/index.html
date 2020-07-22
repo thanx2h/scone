@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,-->
-<!--  maximum-scale=1.0, minimum-scale=1.0">-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,
+  maximum-scale=1.0, minimum-scale=1.0">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
 <head>
     <meta charset="UTF-8">
     <title>Scone</title>
@@ -96,10 +96,9 @@
             <div class="list_row" th:id="'list'+${itemList.rank}" th:each="itemList : ${ingiItemList}">
                 <div class="list_rank" th:attr="data-rank=${itemList.rank}" th:text="${itemList.rank}">rank</div>
                 <div class="list_ci" th:id="'ci'+${itemList.rank}">
-                    <input type=file id="upload" style="display:none;">
+                    <input type=file th:id="'upload'+${itemList.rank}" style="display:none;">
                     <img th:id="'ciImg'+${itemList.rank}" th:src="@{${'/images/ci/' + itemList.company + '.png'}}"
-                         th:attr="onLoad=|fitImageSize(this, '@{${'/images/ci/' + itemList.company + '.png'}}', 70, 70)|,
-                                      onclick=|changeImage('@{${itemList.rank}}')|"/>
+                         th:attr="onclick=|changeImage('@{${itemList.rank}}', '@{${itemList.company}}')|" th:onerror="'this.src=\'' + @{/images/default.png} + '\';'"/>
                 </div>
                 <div class="list_company" th:text="${itemList.company}">brand name</div>
                 <div class="list_value" th:styleappend="${#strings.contains(itemList.upDownRate, '-') ? 'color: blue;' : 'color: red;'} "

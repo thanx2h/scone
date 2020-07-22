@@ -80,41 +80,41 @@ function createOutput(idx){
     return "<div class='keyword' id='printKeyword"+idx+"' ondblclick='input("+idx+")'>"+inputText+"</div>";
 }
 
-function changeImage(idx){
-      var upload = document.querySelector("#upload");
-      upload.addEventListener('change', function(e){
-         var get_file = e.target.files;
-         var image = document.querySelector("#ciImg"+idx);
-         /*FileReader 객체 생성*/
-         var reader = new FileReader();
+function changeImage(idx, name){
+    console.log(idx + " " + name)
+    var upload = document.querySelector("#upload"+idx);
+    upload.addEventListener('change', function(e){
+       var get_file = e.target.files;
+       var image = document.querySelector("#ciImg"+idx);
+       /*FileReader 객체 생성*/
+       var reader = new FileReader();
 
-         /*reader 시작 시 함수 구현*/
-         reader.onload = (function (aImg){
-            console.log(1+ " " + aImg);
-
-            return function(e){
-               /*Base64 인코딩 된 스트링 데이터*/
-               // --- 이미지 확장자 검사 --- //
-               var name = get_file[0].name;
-               var ext = name.substring(name.indexOf(".") + 1, name.length).toLowerCase();
-               if(ext == "png"){
-                  alert("해당 파일은 이미지 파일 입니다.");
+       /*reader 시작 시 함수 구현*/
+       reader.onload = (function (aImg){
+          console.log(1);
+          return function(e){
+             /*Base64 인코딩 된 스트링 데이터*/
+             // --- 이미지 확장자 검사 --- //
+             var name = get_file[0].name;
+             var ext = name.substring(name.indexOf(".") + 1, name.length).toLowerCase();
+             if(ext == "png"){
+                alert("해당 파일은 이미지 파일 입니다.");
 //                  console.log(e.target.result);
-                  aImg.src = e.target.result;
-                  fitImageSize(this, window.atob(e.target.result), 70, 70);
-               }
-               else
-                  alert("해당 파일은 이미지 파일이 아닙니다.");
-            }
-         })(image)
+                aImg.src = e.target.result;
+//                  fitImageSize(this, window.atob(e.target.result), 70, 70);
+             }
+             else
+                alert("해당 파일은 이미지 파일이 아닙니다.");
+          }
+       })(image)
 
-         if(get_file){
+       if(get_file){
             /* get_file[0]을 읽어서 read 행위가 종료되면 loadend 이벤트가 트리거 되고 onload에 설정했던 return으로 넘어간다.
             이와 함께 base64 인코딩 된 스트링 데이터가 result 속성에 담겨진다. */
 
-            reader.readAsDataURL(get_file[0])
-            console.log(2);
-         }
-      });
-      upload.click();
+          reader.readAsDataURL(get_file[0])
+          console.log(2);
+       }
+    });
+    upload.click();
 }
