@@ -98,13 +98,14 @@
                 <div class="list_ci" th:id="'ci'+${itemList.rank}">
                     <input type=file th:id="'upload'+${itemList.rank}" style="display:none;">
                     <img th:id="'ciImg'+${itemList.rank}" th:src="@{${'/images/ci/' + itemList.company + '.png'}}"
-                         th:attr="onclick=|changeImage('@{${itemList.rank}}', '@{${itemList.company}}')|" th:onerror="'this.src=\'' + @{/images/default.png} + '\';'"/>
+                         th:attr="onclick=|changeImage('@{${itemList.rank}}', '@{${itemList.company}}')|"
+                         th:onerror="'this.src=\'' + @{/images/default.png} + '\';'"/>
                 </div>
                 <div class="list_company" th:text="${itemList.company}">brand name</div>
                 <div class="list_value" th:styleappend="${#strings.contains(itemList.upDownRate, '-') ? 'color: blue;' : 'color: red;'} "
                      th:text="${itemList.upDownRate}">upDownRate</div>
                 <div class="list_keyword" th:id="'printKeyword'+${itemList.rank}"
-                     th:attr="ondblclick=|input('${itemList.rank}')|">Enter the Keywords(double click)</div>
+                     th:attr="ondblclick=|input('${itemList.rank}')|"><p>Enter the Keywords (double click)</p></div>
             </div>
         </div>
 
