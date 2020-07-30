@@ -13,8 +13,8 @@ window.onload = function(){
 function fitImageSize(obj, href, maxWidth, maxHeight) {
     console.log("fitImageSize : " + href)
     var image = new Image();
-    var maxWidth = document.getElementById('company').offsetWidth/2;
- 	var maxHeight = document.getElementById('company').offsetHeight;
+    var maxWidth = document.getElementById('list_ci').offsetWidth/2;
+ 	var maxHeight = document.getElementById('list_ci').offsetHeight;
 
  	image.onload = function(){
  	console.log(href + " onload")
@@ -36,8 +36,8 @@ function fitImageSize(obj, href, maxWidth, maxHeight) {
 
 function img_resize(img){
     console.log("img_resize")
-    var myWidth = document.getElementById('company').offsetWidth/2;
-    var myHeight = document.getElementById('company').offsetHeight;
+    var myWidth = document.getElementById('list_ci').offsetWidth/2;
+    var myHeight = document.getElementById('list_ci').offsetHeight;
 
     if( img.height > myHeight ){
         r = myHeight / img.height;
