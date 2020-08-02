@@ -57,7 +57,7 @@ function input(idx){
     var textareaKeyword = document.createElement('div');
 
     textareaKeyword.setAttribute('id', 'textareaKeyword'+idx);
-    textareaKeyword.setAttribute('class', 'keyword');
+    textareaKeyword.setAttribute('class', 'list_keyword');
     document.getElementById('list'+idx).appendChild(textareaKeyword);
     document.getElementById('textareaKeyword'+idx).innerHTML += createInput(idx);
 
@@ -77,7 +77,7 @@ function createOutput(idx){
     var inputText = document.getElementById('inputTextarea'+idx).value;
     if(!inputText)
         inputText = "Enter the Keywords<br>(double click)";
-    return "<div class='keyword' id='printKeyword"+idx+"' ondblclick='input("+idx+")'>"+inputText+"</div>";
+    return "<div class='list_keyword' id='printKeyword"+idx+"' ondblclick='input("+idx+")'>"+inputText+"</div>";
 }
 
 function changeImage(idx, name){
