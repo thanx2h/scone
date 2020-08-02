@@ -9,13 +9,22 @@
 }
 
 body{
+<<<<<<< HEAD
     width:100%;
+=======
+    width:70%;
+>>>>>>> origin/master
     background-size:inherit;
+    background-color:yellow;
     margin:0 auto;
 }
 
+<<<<<<< HEAD
 .wrap { width:80%; margin:0 auto;
 }
+=======
+.wrap { width:80%; margin:0 auto;}
+>>>>>>> origin/master
 
 a{ 
     text-decoration: none;
@@ -49,9 +58,11 @@ h1{text-align: center; color: red;}
 
 
 
+
 /*list body*/
 .list_body{ width:100%;}
 .list_row{ width:100%; float:left; border-bottom:1px solid #111;}
+<<<<<<< HEAD
 .list_row > div{float:left; height:60px; line-height:60px; text-align: center; overflow:hidden;}
 .list_rank{ width:5%; }
 .list_ci{ width:20%;  height:60px; line-height:60px; text-align:center; }
@@ -62,6 +73,16 @@ h1{text-align: center; color: red;}
 #keywordbox{width:100%; height:100%; line-height:20px;}
 #keywordbox td{vertical-align:middle; word-break: normal;}
 /*.list_keyword p{height: 130px ; display: table-cell; vertical-align: middle; }*/
+=======
+.list_row > div{float:left; height:60px; line-height:60px; text-align: center;}
+.list_rank{ width:5%; background-color: aqua; }
+.list_ci{ width:15%;}
+.list_ci img{width:100%; height:100%;}
+.list_company{width:15%; overflow: hidden; background-color:red;}
+.list_value{ width:20%; background-color:cornflowerblue}
+.list_keyword{width:45%; overflow: hidden; background-color:fuchsia} 
+.list_keyword p{line-height:20px;  }
+>>>>>>> origin/master
 
 
 /*footer*/
