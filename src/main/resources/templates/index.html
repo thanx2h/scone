@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,-->
-<!--  maximum-scale=1.0, minimum-scale=1.0">-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,
+  maximum-scale=1.0, minimum-scale=1.0">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
 <head>
     <meta charset="UTF-8">
     <title>Scone</title>
@@ -55,7 +55,7 @@
                     <span class="rank2">#</span>
                 </li>
                 <li class="company">Company</li>
-                <li class="value">Change in Value</li>
+                <li class="value">Value</li>
                 <li class="keyword">Market Keyword</li>
             </ul>
         </div>
@@ -105,10 +105,11 @@
                 <div class="list_company" th:text="${itemList.company}">brand name</div>
                 <div class="list_value" th:styleappend="${#strings.contains(itemList.upDownRate, '-') ? 'color: blue;' : 'color: red;'} "
                      th:text="${itemList.upDownRate}">upDownRate</div>
-                <div class="list_keyword" th:id="'printKeyword'+${itemList.rank}" th:attr="ondblclick=|input('${itemList.rank}')|">
+                <div class="list_keyword" th:id="'printKeyword'+${itemList.rank}"
+                     th:attr="ondblclick=|input('${itemList.rank}')|">
                          <table id="keywordbox">
                              <tr>
-                                 <td>Enter the Keywords<p>(double click)</td>
+                                 <td>Enter the Keywords<br>(double click)</td>
                              </tr>
                          </table>
                      </div>

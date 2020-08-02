@@ -43,8 +43,8 @@ h1{text-align: center; color: red;}
 .list_head li{ float:left; height:30px; line-height:30px; text-align:center; font-weight:bold;} 
 .rank{ width:5%; }
 .rank2{display:none;}
-.company{ width:30%; }
-.value{ width:20%; white-space:pre-line;}
+.company{ width:40%; }
+.value{ width:10%; white-space:pre-line;}
 .keyword{ width:45%;}
 
 
@@ -54,10 +54,10 @@ h1{text-align: center; color: red;}
 .list_row{ width:100%; float:left; border-bottom:1px solid #111;}
 .list_row > div{float:left; height:60px; line-height:60px; text-align: center; overflow:hidden;}
 .list_rank{ width:5%; }
-.list_ci{ width:15%;  height:60px; line-height:60px; text-align:center; }
+.list_ci{ width:20%;  height:60px; line-height:60px; text-align:center; }
 .list_ci > img{max-width:100%; max-height:100%; vertical-align:middle;}
-.list_company{width:15%; overflow: hidden;}
-.list_value{ width:20%;}
+.list_company{width:20%; overflow: hidden;}
+.list_value{ width:10%;}
 .list_keyword{width:45%; height:100%;}
 #keywordbox{width:100%; height:100%; line-height:20px;}
 #keywordbox td{vertical-align:middle; word-break: normal;}
@@ -83,8 +83,7 @@ footer .copy{ font-size: 11px; text-align: center; font-weight: 600; padding:20p
     .wrap{width:100%;}
     
     .list_head{ font-size:12px;}
-    .list_head .value{}
-    .rank1{display:none;}
+    .list_head .value{line height 12px}
     .rank2{display:inline-block;
 }
 

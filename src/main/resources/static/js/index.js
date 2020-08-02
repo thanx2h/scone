@@ -64,7 +64,7 @@ function input(idx){
 }
 
 function createInput(idx){
-    return "<center><textarea id='inputTextarea"+idx+"'></textarea><br><button type='button' id='bttClick"+idx+"' onClick='output("+idx+")'>COMPLETE</button></center>"
+    return "<center><textarea id='inputTextarea"+idx+"'></textarea><button type='button' id='bttClick"+idx+"' onClick='output("+idx+")'>COMPLETE</button></center>"
 }
 
 
