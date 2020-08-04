@@ -104,7 +104,13 @@
                     <img th:id="'ciImg'+${itemList.rank}" th:src="@{${'/images/ci/' + itemList.company + '.png'}}"
                          th:attr="onclick=|changeImage('@{${itemList.rank}}')|" onerror="this.src='images/default.png'"/>
                 </div>
-                <div class="list_company" th:text="${itemList.company}">brand name</div>
+                <div class="list_company">
+                    <table id="brandname">
+                        <tr>
+                            <td th:text="${itemList.company}">brand name</td>
+                        </tr>
+                    </table>
+                </div>
                 <div class="list_value"
                      th:styleappend="${#strings.contains(itemList.upDownRate, '-') ? 'color: blue;' : 'color: red;'} "
                      th:text="${itemList.upDownRate}">upDownRate
