@@ -76,8 +76,8 @@ function output(idx){
 function createOutput(idx){
     var inputText = document.getElementById('inputTextarea'+idx).value;
     if(!inputText)
-        inputText = "Enter the Keywords<br>(double click)";
-    return "<div class='list_keyword' id='printKeyword"+idx+"' ondblclick='input("+idx+")'>"+inputText+"</div>";
+        inputText = "Enter the Keywords(double click)";
+    return "<div class='list_keyword' id='printKeyword"+idx+"' ondblclick='input("+idx+")'><table id='keywordbox'><tr><td style='vertical-align:middle; word-break:normal;'>"+inputText+"</td></tr></table></div>";
 }
 
 function changeImage(idx, name){
