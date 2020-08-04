@@ -97,7 +97,7 @@ function changeImage(idx, name){
              // --- 이미지 확장자 검사 --- //
              var name = get_file[0].name;
              var ext = name.substring(name.indexOf(".") + 1, name.length).toLowerCase();
-             if(ext == "png"){
+             if(ext == "png" || ext == "jpg"){
                 alert("해당 파일은 이미지 파일 입니다.");
 //                  console.log(e.target.result);
                 aImg.src = e.target.result;

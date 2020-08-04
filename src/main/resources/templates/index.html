@@ -3,7 +3,6 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,
   maximum-scale=1.0, minimum-scale=1.0">
-<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
 <head>
     <meta charset="UTF-8">
     <title>Scone</title>
@@ -30,6 +29,7 @@
             });
         });
     });
+
 </script>
 
 <div class="wrap" id="wrap" style="background-color:white">
@@ -55,64 +55,67 @@
                     <span class="rank2">#</span>
                 </li>
                 <li class="company">Company</li>
-                <li class="value">Value</li>
+                <li class="value">
+                    <p>Change in Value</p>
+                </li>
                 <li class="keyword">Market Keyword</li>
             </ul>
         </div>
 
-<!--        <div class="list_body">-->
-<!--            <div class="list" th:id="'list'+${itemList.rank}" th:each="itemList : ${ingiItemList}">-->
-<!--                <div class="rank" th:attr="data-rank=${itemList.rank}" th:text="${itemList.rank}">rank</div>-->
-<!--                <div class="company_contents" id="company">-->
-<!--                    <div class="ci" th:id="'ci'+${itemList.rank}">-->
-<!--                        <input type=file id="upload" style="display:none;">-->
-<!--                        <img th:id="'ciImg'+${itemList.rank}" th:src="@{${'/images/ci/' + itemList.company + '.png'}}"-->
-<!--                             th:attr="onLoad=|fitImageSize(this, '@{${'/images/ci/' + itemList.company + '.png'}}', 70, 70)|,-->
-<!--                                      onclick=|changeImage('@{${itemList.rank}}')|"/>-->
-<!--                    </div>-->
-<!--                    <div class="name" th:text="${itemList.company}">company</div>-->
-<!--                </div>-->
-<!--                <div class="value"-->
-<!--                     th:styleappend="${#strings.contains(itemList.upDownRate, '-') ? 'color: blue;' : 'color: red;'} "-->
-<!--                     th:text="${itemList.upDownRate}">upDownRate-->
-<!--                </div>-->
-<!--                <div class="keyword" th:id="'printKeyword'+${itemList.rank}"-->
-<!--                     th:attr="ondblclick=|input('${itemList.rank}')|">Enter the Keywords<br>(double click)-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
+        <!--        <div class="list_body">-->
+        <!--            <div class="list" th:id="'list'+${itemList.rank}" th:each="itemList : ${ingiItemList}">-->
+        <!--                <div class="rank" th:attr="data-rank=${itemList.rank}" th:text="${itemList.rank}">rank</div>-->
+        <!--                <div class="company_contents" id="company">-->
+        <!--                    <div class="ci" th:id="'ci'+${itemList.rank}">-->
+        <!--                        <input type=file id="upload" style="display:none;">-->
+        <!--                        <img th:id="'ciImg'+${itemList.rank}" th:src="@{${'/images/ci/' + itemList.company + '.png'}}"-->
+        <!--                             th:attr="onLoad=|fitImageSize(this, '@{${'/images/ci/' + itemList.company + '.png'}}', 70, 70)|,-->
+        <!--                                      onclick=|changeImage('@{${itemList.rank}}')|"/>-->
+        <!--                    </div>-->
+        <!--                    <div class="name" th:text="${itemList.company}">company</div>-->
+        <!--                </div>-->
+        <!--                <div class="value"-->
+        <!--                     th:styleappend="${#strings.contains(itemList.upDownRate, '-') ? 'color: blue;' : 'color: red;'} "-->
+        <!--                     th:text="${itemList.upDownRate}">upDownRate-->
+        <!--                </div>-->
+        <!--                <div class="keyword" th:id="'printKeyword'+${itemList.rank}"-->
+        <!--                     th:attr="ondblclick=|input('${itemList.rank}')|">Enter the Keywords<br>(double click)-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
 
-<!--        <div class="list_body">-->
-<!--            <div class="list_row">-->
-<!--                <div class="list_rank">rank</div>-->
-<!--                <div class="list_ci">-->
-<!--                    <img src="img/samsung.png" alt="samsung" >-->
-<!--                </div>-->
-<!--                <div class="list_company">brand name</div>-->
-<!--                <div class="list_value">upDownRate</div>-->
-<!--                <div class="list_keyword">Enter the Keywords(double click)</div>-->
-<!--            </div>-->
-<!--        </div>-->
+        <!--        <div class="list_body">-->
+        <!--            <div class="list_row">-->
+        <!--                <div class="list_rank">rank</div>-->
+        <!--                <div class="list_ci">-->
+        <!--                    <img src="img/samsung.png" alt="samsung" >-->
+        <!--                </div>-->
+        <!--                <div class="list_company">brand name</div>-->
+        <!--                <div class="list_value">upDownRate</div>-->
+        <!--                <div class="list_keyword">Enter the Keywords(double click)</div>-->
+        <!--            </div>-->
+        <!--        </div>-->
 
         <div class="list_body">
             <div class="list_row" th:id="'list'+${itemList.rank}" th:each="itemList : ${ingiItemList}">
                 <div class="list_rank" th:attr="data-rank=${itemList.rank}" th:text="${itemList.rank}">rank</div>
                 <div class="list_ci" th:id="'ci'+${itemList.rank}">
-                    <input type=file id="upload" style="display:none;">
+                    <input type=file th:id="'upload'+${itemList.rank}" style="display:none;">
                     <img th:id="'ciImg'+${itemList.rank}" th:src="@{${'/images/ci/' + itemList.company + '.png'}}"
-                         th:attr="onclick=|changeImage('@{${itemList.rank}}')|"/>
+                         th:attr="onclick=|changeImage('@{${itemList.rank}}')|" onerror="this.src='images/default.png'"/>
                 </div>
                 <div class="list_company" th:text="${itemList.company}">brand name</div>
-                <div class="list_value" th:styleappend="${#strings.contains(itemList.upDownRate, '-') ? 'color: blue;' : 'color: red;'} "
-                     th:text="${itemList.upDownRate}">upDownRate</div>
+                <div class="list_value"
+                     th:styleappend="${#strings.contains(itemList.upDownRate, '-') ? 'color: blue;' : 'color: red;'} "
+                     th:text="${itemList.upDownRate}">upDownRate
+                </div>
                 <div class="list_keyword" th:id="'printKeyword'+${itemList.rank}"
                      th:attr="ondblclick=|input('${itemList.rank}')|">
-                         <table id="keywordbox">
-                             <tr>
-                                 <td>Enter the Keywords(double click)</td>
-                             </tr>
-                         </table>
-                     </div>
+                    <table id="keywordbox">
+                        <tr>
+                            <td>Enter the Keywords(double click)</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
