@@ -118,3 +118,18 @@ function changeImage(idx, name){
     });
     upload.click();
 }
+
+function retryImage(idx, company){
+    var image = document.getElementById('ciImg'+idx);
+
+    try {
+        image.src = 'images/ci/' + company + '.png'
+        image.onerror = function(){
+            console.log("retryImage, onerror")
+            image.src = "images/default.png"
+        }
+    }
+    catch (e) {
+        console.log("error :" + e)
+    }
+}

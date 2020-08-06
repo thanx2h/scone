@@ -67,8 +67,11 @@
                 <div class="list_rank" th:attr="data-rank=${itemList.rank}" th:text="${itemList.rank}">rank</div>
                 <div class="list_ci" th:id="'ci'+${itemList.rank}">
                     <input type=file th:id="'upload'+${itemList.rank}" style="display:none;">
-                    <img th:id="'ciImg'+${itemList.rank}" th:src="@{${'/images/ci/' + itemList.company + '.png'}}"
-                         th:attr="onclick=|changeImage('@{${itemList.rank}}')|" onerror="this.src='images/default.png'"/>
+<!--                    <img th:id="'ciImg'+${itemList.rank}" th:src="@{${'images/ci/' + itemList.company + '.PNG'}}"-->
+<!--                         th:attr="onclick=|changeImage('@{${itemList.rank}}')|" onerror="this.src='images/default.png'"/>-->
+
+                    <img th:id="'ciImg'+${itemList.rank}" th:data-company="${itemList.company}" th:src="@{${'images/ci/' + itemList.company + '.PNG'}}"
+                         th:attr="onclick=|changeImage('@{${itemList.rank}}')|, onerror=|retryImage('@{${itemList.rank}}', '@{${itemList.company}}')|"/>
                 </div>
                 <div class="list_company">
                     <table id="brandname">
