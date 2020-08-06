@@ -76,8 +76,8 @@ function output(idx){
 function createOutput(idx){
     var inputText = document.getElementById('inputTextarea'+idx).value;
     if(!inputText)
-        inputText = "Enter the Keywords<br>(double click)";
-    return "<div class='list_keyword' id='printKeyword"+idx+"' ondblclick='input("+idx+")'>"+inputText+"</div>";
+        inputText = "Enter the Keywords(double click)";
+    return "<div class='list_keyword' id='printKeyword"+idx+"' ondblclick='input("+idx+")'><table id='keywordbox'><tr><td>"+inputText+"</td></tr></table></div>";
 }
 
 function changeImage(idx, name){
@@ -97,7 +97,7 @@ function changeImage(idx, name){
              // --- 이미지 확장자 검사 --- //
              var name = get_file[0].name;
              var ext = name.substring(name.indexOf(".") + 1, name.length).toLowerCase();
-             if(ext == "png"){
+             if(ext == "png" || ext == "jpg"){
                 alert("해당 파일은 이미지 파일 입니다.");
 //                  console.log(e.target.result);
                 aImg.src = e.target.result;

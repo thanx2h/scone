@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.an'
 version = '0.0.4-SNAPSHOT'
-sourceCompatibility = '14'
+sourceCompatibility = '13'
 
 repositories {
 	mavenCentral()

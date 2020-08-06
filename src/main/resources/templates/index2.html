@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,-->
+<!--  maximum-scale=1.0, minimum-scale=1.0">-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
     <meta charset="UTF-8">
     <title>Scone</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <!-- 이미지 저장 -->
-    <!--    <script src="js/FileSaver.js"></script>-->
-    <!--    <script src="js/html2canvas.js"></script>-->
-    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js "></script>
+    <script src="js/FileSaver.js"></script>
+    <script src="js/html2canvas.js"></script>
+    <!--    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>-->
+    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js "></script>-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 <button id="save">저장하기</button>
+<script src="js/index.js" type="text/javascript"></script>
 <script type="text/javascript">
      $(function(){
         $("#save").click(function() {
@@ -38,94 +42,88 @@
     <div class="txt">
         <p class="today">
             <span>Today's Trending Stock</span>
-            <!--            <span id="date"> 2020/06/01(Mon)</span>-->
-            <span id="date">
-                <script type="text/javascript">
-                    var today = new Date();
-                    var year = today.getFullYear(); // 년도
-                    var month = today.getMonth() + 1;  // 월
-                    var date = today.getDate();  // 날짜
-                    document.getElementById('date').innerHTML = year + '/' + month + '/' + date;
-
-                    function img_resize(img){
-                        var myWidth = document.getElementById('company').offsetWidth/2;
-                        var myHeight = document.getElementById('company').offsetHeight;
-
-                        if( img.height > myHeight ){
-                            r = myHeight / img.height;
-                            h = img.height * r;
-                            img.height = h;
-                        }
-
-                        if(img.width > myWidth){
-                            r = myHeight / img.height;
-                            w = img.width * r;
-                            img.width = w;
-                        }
-                    }
-                    function fitImageSize(obj, href, maxWidth, maxHeight) {
- 	                var image = new Image();
-
-<!-- 	                var maxWidth = document.getElementById('company').offsetWidth/2;-->
-<!-- 	                var maxHeight = document.getElementById('company').offsetHeight;-->
-
-	                image.onload = function(){
-
-		                var width = image.width;
-		                var height = image.height;
-
-		                var scalex = maxWidth / width;
-		                var scaley = maxHeight / height;
-
-		                var scale = (scalex < scaley) ? scalex : scaley;
-                		if (scale > 1)
-			                scale = 1;
-
-		                obj.width = scale * width;
-		                obj.height = scale * height;
-		                obj.style.display = "";
-	                }
-	                image.src = href;
-                }
-                </script>
-        </span>
+            <span id="date"></span>
         </p>
         <p class="today2">#순위는 당일 투자자들의 관심도 순입니다</p>
     </div>
 
     <div class="list_wrap">
         <div class="list_head">
-           <ul>
-              <li class="rank">Rank</li>
-              <li class="company">Company</li>
-              <li class="value">Change in Value</li>
-              <li class="keyword">Market Keyword</li>
-             </ul>
+            <ul>
+                <li class="rank">
+                    <span class="rank1">Rank</span>
+                    <span class="rank2">#</span>
+                </li>
+                <li class="company">Company</li>
+                <li class="value">
+                    <p>Change in Value</p>
+                </li>
+                <li class="keyword">Market Keyword</li>
+            </ul>
         </div>
-        
-        
-<!------------------------------------------------------->
+
+        <!--        <div class="list_body">-->
+        <!--            <div class="list" th:id="'list'+${itemList.rank}" th:each="itemList : ${ingiItemList}">-->
+        <!--                <div class="rank" th:attr="data-rank=${itemList.rank}" th:text="${itemList.rank}">rank</div>-->
+        <!--                <div class="company_contents" id="company">-->
+        <!--                    <div class="ci" th:id="'ci'+${itemList.rank}">-->
+        <!--                        <input type=file id="upload" style="display:none;">-->
+        <!--                        <img th:id="'ciImg'+${itemList.rank}" th:src="@{${'/images/ci/' + itemList.company + '.png'}}"-->
+        <!--                             th:attr="onLoad=|fitImageSize(this, '@{${'/images/ci/' + itemList.company + '.png'}}', 70, 70)|,-->
+        <!--                                      onclick=|changeImage('@{${itemList.rank}}')|"/>-->
+        <!--                    </div>-->
+        <!--                    <div class="name" th:text="${itemList.company}">company</div>-->
+        <!--                </div>-->
+        <!--                <div class="value"-->
+        <!--                     th:styleappend="${#strings.contains(itemList.upDownRate, '-') ? 'color: blue;' : 'color: red;'} "-->
+        <!--                     th:text="${itemList.upDownRate}">upDownRate-->
+        <!--                </div>-->
+        <!--                <div class="keyword" th:id="'printKeyword'+${itemList.rank}"-->
+        <!--                     th:attr="ondblclick=|input('${itemList.rank}')|">Enter the Keywords<br>(double click)-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
+
+        <!--        <div class="list_body">-->
+        <!--            <div class="list_row">-->
+        <!--                <div class="list_rank">rank</div>-->
+        <!--                <div class="list_ci">-->
+        <!--                    <img src="img/samsung.png" alt="samsung" >-->
+        <!--                </div>-->
+        <!--                <div class="list_company">brand name</div>-->
+        <!--                <div class="list_value">upDownRate</div>-->
+        <!--                <div class="list_keyword">Enter the Keywords(double click)</div>-->
+        <!--            </div>-->
+        <!--        </div>-->
+
         <div class="list_body">
-            <div class="list_row">
-                <div class="list_rank">rank</div>
+            <div class="list_row" th:id="'list'+${itemList.rank}" th:each="itemList : ${ingiItemList}">
+                <div class="list_rank" th:attr="data-rank=${itemList.rank}" th:text="${itemList.rank}">rank</div>
                 <div class="list_ci">
-                    <img src="img/samsung.png" alt="samsung" >
+                    <img src="images/ci/google.png" alt="google">
                 </div>
-                <div class="list_company">brand name</div>
-                <div class="list_value">upDownRate</div>
-                <div class="list_keyword">Enter the Keywords(double click)</div>
+                <div class="list_company" th:text="${itemList.company}">brand name</div>
+                <div class="list_value" th:styleappend="${#strings.contains(itemList.upDownRate, '-') ? 'color: blue;' : 'color: red;'} "
+                     th:text="${itemList.upDownRate}">upDownRate</div>
+                <div class="list_keyword" th:id="'printKeyword'+${itemList.rank}"
+                     th:attr="ondblclick=|input('${itemList.rank}')|">
+                    <table id="keywordbox">
+                        <tr>
+                            <td>Enter the Keywords(double click)</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-<!------------------------------------------------------->
 
-    <footer>
-         <p class="copy">
-              <span class="cr">copyright 2020</span>
-              <span class="cr_red">오픈카카오 Scone(Password:scone20)</span>
-              <sapn class="cr">all rights reserved</sapn>
-         </p>
-    </footer>
+        <footer>
+            <p class="copy">
+                <span class="cr">copyright 2020</span>
+                <span class="cr_red">오픈카카오 Scone(Password:scone20)</span>
+                <sapn class="cr">all rights reserved</sapn>
+            </p>
+        </footer>
+    </div>
 </div>
 </body>
 </html>
