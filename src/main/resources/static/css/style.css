@@ -9,6 +9,7 @@
 }
 
 body{
+    background-image:url('images/scone.png')
     width:100%;
     background-size:inherit;
     margin:0 auto;
