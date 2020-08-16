@@ -4,7 +4,9 @@ import com.an.scone.mapper.keyword.KeywordMapper;
 import com.an.scone.service.KeywordService;
 import com.an.scone.vo.KeywordInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class KeywordServiceImpl implements KeywordService {
 
     private KeywordMapper keywordMapper;
@@ -17,8 +19,8 @@ public class KeywordServiceImpl implements KeywordService {
     }
 
     @Override
-    public KeywordInfo findKeyword() {
-        return keywordMapper.findKeyword();
+    public KeywordInfo getKeywordInfo() {
+        return keywordMapper.getKeywordInfo();
     }
 
     @Override
@@ -27,22 +29,22 @@ public class KeywordServiceImpl implements KeywordService {
     }
 
     @Override
-    public String findKeywordByCompany(String company) {
-        return keywordMapper.findKeywordByCompany(company);
+    public String getKeywordInfoByCompany(String company) {
+        return keywordMapper.getKeywordInfoByCompany(company);
     }
 
     @Override
-    public void saveCompany(String company) {
-        keywordMapper.saveCompany(company);
+    public void setCompany(String company, String keyword) {
+        keywordMapper.setCompany(company, keyword);
     }
 
     @Override
-    public void saveKeyword(String keyword) {
-        keywordMapper.saveKeyword(keyword);
+    public void setKeyword(String keyword) {
+        keywordMapper.setKeyword(keyword);
     }
 
     @Override
-    public void update(String company, String keyword) {
-        keywordMapper.update(company,keyword);
+    public void updateKeywordInfo(String company, String keyword) {
+        keywordMapper.updateKeywordInfo(company,keyword);
     }
 }

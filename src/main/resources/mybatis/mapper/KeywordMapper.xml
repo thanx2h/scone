@@ -3,8 +3,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.an.scone.mapper.keyword.KeywordMapper">
-    <!-- 작성 예정 : 아래는 예시-->
-<!--    <select id="getEmployee" resultType="java.util.HashMap">-->
-<!--        SELECT * FROM employee;-->
-<!--    </select>-->
+    <select id="getKeywordInfo" resultType="com.an.scone.vo.KeywordInfo">
+        SELECT * FROM KeywordInfo
+    </select>
+
+    <select id="isCompany" resultType="int">
+        SELECT EXISTS (select * from KeywordInfo where company=#{company}) as success
+    </select>
+
+    <select id="getKeywordInfoByCompany" parameterType="String" resultType="int">
+        SELECT * FROM KeywordInfo WHERE company=#{company}
+    </select>
+
+    <insert id="setCompany" parameterType="String">
+        INSERT INTO keywordInfo VALUES (#{company}, #{keyword})
+    </insert>
+
+    <insert id="setKeyword" parameterType="String">
+        INSERT INTO keywordInfo VALUES (#{keyword})
+    </insert>
+
+    <update id="updateKeywordInfo" parameterType="String">
+        UPDATE keywordInfo SET keyword = #{keyword}
+    </update>
+
 </mapper>

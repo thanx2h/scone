@@ -8,5 +8,4 @@ public class SconeApplication {
     public static void main(String[] args) {
         SpringApplication.run(SconeApplication.class, args);
     }
-
 }

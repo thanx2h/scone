@@ -142,7 +142,7 @@ public class IngiItem {
     public String toString() {
         return "IngiItem{" +
                 "rank='" + rank + '\'' +
-                ", ci='" + company + '\'' +
+                ", company='" + company + '\'' +
                 ", searchRate='" + searchRate + '\'' +
                 ", curValue='" + curValue + '\'' +
                 ", upDownValue='" + upDownValue + '\'' +

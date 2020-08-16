@@ -1,39 +1,38 @@
-package com.an.scone.controller;
-
-import com.an.scone.mapper.keyword.KeywordMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-
-public class KeywordController {
-
-
-    private KeywordMapper keywordMapper;
-
-    @Autowired
-    KeywordController(
-            KeywordMapper keywordMapper
-    ) {
-        this.keywordMapper = keywordMapper;
-    }
-
-//    public String findKeywordByCompany(String company){
-//        String keyword = KeywordMapper.findKeywordByCompany(company);
+//package com.an.scone.controller;
+//
+//import com.an.scone.service.KeywordService;
+//import org.springframework.beans.factory.annotation.Autowired;
+//
+//public class KeywordController {
+//
+//    private KeywordService keywordService;
+//
+//    @Autowired
+//    KeywordController(
+//            KeywordService keywordService
+//    ) {
+//        this.keywordService = keywordService;
+//    }
+//
+//    public String getKeywordInfoByCompany(String company){
+//        String keyword = keywordService.getKeywordInfoByCompany(company);
 //        System.out.println("keyword : " + keyword);
-//        return KeywordMapper.findKeywordByCompany(company);
+//        return keywordService.getKeywordInfoByCompany(company);
 //    }
 //
 //    public int isCompany(String company){
-//        return KeywordMapper.isCompany(company);
+//        return keywordService.isCompany(company);
 //    }
 //
 //    public void saveCompany(String company){
-//        KeywordMapper.saveCompany(company);
+//        keywordService.setCompany(company);
 //    }
 //
 //    public void saveKeyword(String company){
-//        KeywordMapper.saveKeyword(company);
+//        keywordService.setKeyword(company);
 //    }
 //
 //    public void update(String company, String keyword){
-//        KeywordMapper.update(company, keyword);
+//        keywordService.updateKeywordInfo(company, keyword);
 //    }
-}
+//}
