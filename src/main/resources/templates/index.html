@@ -85,7 +85,7 @@
                      th:text="${itemList.upDownRate}">upDownRate
                 </div>
                 <div class="list_keyword"
-                     th:attr="ondblclick=|input('${itemList.rank}')|" th:id="'printKeyword'+${itemList.rank}">
+                     th:attr="ondblclick=|input('${itemList.rank}', '${itemList.company}')|" th:id="'printKeyword'+${itemList.rank}">
                     <table id="keywordbox">
                         <tr>
                             <td>Enter the Keywords(double click)</td>

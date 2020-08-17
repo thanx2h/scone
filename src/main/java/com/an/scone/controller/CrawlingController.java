@@ -45,9 +45,9 @@ public class CrawlingController {
         return "index";
     }
 
-//    @RequestMapping(value="/save",method = RequestMethod.POST)
-//    public String postSave(String keyword){
-//        keywordService.updateKeywordInfo(company, keyword);
-//        return "redirect:/member/list";
-//    }
+    @RequestMapping(value="/keyword", method = RequestMethod.POST)
+    public String postSaveKeyword(String company, String keyword){
+        keywordService.updateKeywordInfo(company, keyword);
+        return "200";
+    }
 }

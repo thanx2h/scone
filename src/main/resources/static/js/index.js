@@ -51,32 +51,53 @@ function img_resize(img){
     }
 }
 
-function input(idx){
-    console.log("input")
+function input(idx, company){
+    console.log("input : " + idx + " company : " + company)
     document.getElementById('list'+idx).removeChild(document.getElementById('printKeyword'+idx));
     var textareaKeyword = document.createElement('div');
 
     textareaKeyword.setAttribute('id', 'textareaKeyword'+idx);
     textareaKeyword.setAttribute('class', 'list_keyword');
     document.getElementById('list'+idx).appendChild(textareaKeyword);
-    document.getElementById('textareaKeyword'+idx).innerHTML += createInput(idx);
+    document.getElementById('textareaKeyword'+idx).innerHTML += createInput(idx, company);
 
 }
 
-function createInput(idx){
-    return "<center><textarea id='inputTextarea"+idx+"'></textarea><button type='button' id='bttClick"+idx+"' onClick='output("+idx+")'>COMPLETE</button></center>"
+function createInput(idx, company){
+    console.log("createInput : " + idx + " company : " + company)
+    return '<textarea id="inputTextarea'+idx+'"></textarea><button type="button" id="bttClick' +idx+'" onClick="output(\''+idx+'\',\''+company+'\')">COMPLETE</button>'
 }
 
 
-function output(idx){
-    document.getElementById('list'+idx).innerHTML += createOutput(idx);
+function output(idx, company){
+    console.log("output : " + idx + " company : " + company)
+    document.getElementById('list'+idx).innerHTML += createOutput(idx, company);
     document.getElementById('list'+idx).removeChild(document.getElementById('textareaKeyword'+idx));
 }
 
-function createOutput(idx){
+function sendKeyword(company, keyword){
+    console.log("sendKeyword : " + company + " " + keyword)
+	$.ajax({
+		url: "/keyword",
+		dataType: "json",
+		data: "company="+company+"?keyword="+keyword,
+		type: "POST",
+		success : function(data){
+			alert("성공")
+		},
+		error : function(){
+			alert("에러")
+		}
+	});
+}
+
+function createOutput(idx, company){
+    console.log("createOutput : " + idx + " " + company)
     var inputText = document.getElementById('inputTextarea'+idx).value;
     if(!inputText)
         inputText = "Enter the Keywords(double click)";
+
+    sendKeyword(company, inputText);
     return "<div class='list_keyword' id='printKeyword"+idx+"' ondblclick='input("+idx+")'><table id='keywordbox'><tr><td>"+inputText+"</td></tr></table></div>";
 }
 

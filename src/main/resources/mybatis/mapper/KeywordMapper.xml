@@ -11,7 +11,7 @@
         SELECT EXISTS (select * from KeywordInfo where company=#{company}) as success
     </select>
 
-    <select id="getKeywordInfoByCompany" parameterType="String" resultType="int">
+    <select id="getKeywordInfoByCompany" parameterType="String" resultType="String">
         SELECT * FROM KeywordInfo WHERE company=#{company}
     </select>
 
