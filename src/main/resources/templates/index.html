@@ -88,7 +88,7 @@
                      th:attr="ondblclick=|input('${itemList.rank}', '${itemList.company}')|" th:id="'printKeyword'+${itemList.rank}">
                     <table id="keywordbox">
                         <tr>
-                            <td>Enter the Keywords(double click)</td>
+                            <td th:text="${itemList.keyword}"></td>
                         </tr>
                     </table>
                 </div>

@@ -3,11 +3,13 @@ package com.an.scone.controller;
 import com.an.scone.network.crawling.NaverCrawling;
 import com.an.scone.service.KeywordService;
 import com.an.scone.vo.IngiItem;
+import com.an.scone.vo.KeywordInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 
@@ -27,7 +29,6 @@ public class CrawlingController {
     public String getNews(Model model) {
 //        System.out.println("getNews");
         ArrayList<IngiItem> ingiItemList = NaverCrawling.request();
-
         for (IngiItem ingiItem :ingiItemList) {
 
             String defaultKeyword = "Enter the Keywords(double click)";
@@ -45,9 +46,11 @@ public class CrawlingController {
         return "index";
     }
 
-    @RequestMapping(value="/keyword", method = RequestMethod.POST)
-    public String postSaveKeyword(String company, String keyword){
-        keywordService.updateKeywordInfo(company, keyword);
+    @RequestMapping(value="/keyword/save", method = RequestMethod.POST)
+    @ResponseBody
+    public String saveKeyword(KeywordInfo keywordInfo){
+        System.out.println("KeywordInfo : " + keywordInfo.toString());
+        keywordService.updateKeywordInfo(keywordInfo.getCompany(), keywordInfo.getKeyword());
         return "200";
     }
 }

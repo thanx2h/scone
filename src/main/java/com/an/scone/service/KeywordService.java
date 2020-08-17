@@ -14,7 +14,7 @@ public interface KeywordService {
 //    @Select("SELECT EXISTS (select * from KeywordInfo where company=#{company}) as success;")
     int isCompany(String company);
 
-//    @Select("SELECT * FROM KeywordInfo WHERE company=#{company}")
+//    @Select("SELECT keyword FROM KeywordInfo WHERE company=#{company}")
     String getKeywordInfoByCompany(String company);
 
 //    @Insert("INSERT INTO keywordInfo VALUES (#{company})")

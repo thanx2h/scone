@@ -1,15 +1,15 @@
 package com.an.scone.vo;
 
 public class KeywordInfo {
-    private String companyName;
+    private String company;
     private String keyword;
 
-    public String getCompanyName() {
-        return companyName;
+    public String getCompany() {
+        return company;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getKeyword() {
@@ -18,5 +18,13 @@ public class KeywordInfo {
 
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+
+    @Override
+    public String toString() {
+        return "KeywordInfo{" +
+                "company='" + company + '\'' +
+                ", keyword='" + keyword + '\'' +
+                '}';
     }
 }

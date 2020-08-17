@@ -77,16 +77,21 @@ function output(idx, company){
 
 function sendKeyword(company, keyword){
     console.log("sendKeyword : " + company + " " + keyword)
+
+    var form = {
+            company: company,
+            keyword: keyword
+    }
+
 	$.ajax({
-		url: "/keyword",
-		dataType: "json",
-		data: "company="+company+"?keyword="+keyword,
+		url: "/keyword/save",
+		data: form,
 		type: "POST",
 		success : function(data){
-			alert("성공")
+			console.log("성공")
 		},
 		error : function(){
-			alert("에러")
+			console.log("에러")
 		}
 	});
 }

@@ -12,7 +12,7 @@
     </select>
 
     <select id="getKeywordInfoByCompany" parameterType="String" resultType="String">
-        SELECT * FROM KeywordInfo WHERE company=#{company}
+        SELECT keyword FROM KeywordInfo WHERE company=#{company}
     </select>
 
     <insert id="setCompany" parameterType="String">
@@ -24,7 +24,7 @@
     </insert>
 
     <update id="updateKeywordInfo" parameterType="String">
-        UPDATE keywordInfo SET keyword = #{keyword}
+        UPDATE keywordInfo SET keyword = #{keyword} WHERE company=#{company}
     </update>
 
 </mapper>
